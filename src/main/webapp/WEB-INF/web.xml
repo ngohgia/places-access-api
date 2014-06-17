@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app version="3.0"
-         xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         metadata-complete="false">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" metadata-complete="false" version="3.0">
   <servlet>
     <servlet-name>RayPlacesDB</servlet-name>
     <servlet-class>places.servlets.RayPlacesDBServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>getPlacesFromMongoDB</servlet-name>
+    <servlet-class>places.servlets.GetPlacesFromMongoDBServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FileManager</servlet-name>
+    <servlet-class>recording.servlets.FilesManagerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ViewFilesServlet</servlet-name>
+    <servlet-class>recording.servlets.ViewFilesServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SearchPlaces</servlet-name>
+    <servlet-class>places.servlets.SearchPlacesServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddRecordToDB</servlet-name>
+    <servlet-class>recording.servlets.AddRecordServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteRecordingServlet</servlet-name>
+    <servlet-class>recording.servlets.DeleteRecordingServlet</servlet-class>
+  </servlet>
+  
+  
   <servlet-mapping>
     <servlet-name>RayPlacesDB</servlet-name>
     <url-pattern>/rayplaces</url-pattern>
   </servlet-mapping>
-         
+  <servlet-mapping>
+    <servlet-name>getPlacesFromMongoDB</servlet-name>
+    <url-pattern>/getPlacesFromMongoDB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddRecordToDB</servlet-name>
+    <url-pattern>/add_record</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileManager</servlet-name>
+    <url-pattern>/record_file_manager</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ViewFilesServlet</servlet-name>
+    <url-pattern>/view_records</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchPlaces</servlet-name>
+    <url-pattern>/search_places</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteRecordingServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>
-
