@@ -120,18 +120,18 @@ public class RayPlacesDBServlet extends HttpServlet {
     }
     
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	response.setHeader("Access-Control-Allow-Origin", "*");
+    	response.addHeader("Access-Control-Allow-Origin", "*");
         //response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, TRACE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "accept, content-type");
+        response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, TRACE, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "accept, content-type");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", "*");
         //response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, TRACE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "accept, content-type");
+        response.addHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, TRACE, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "accept, content-type");
         //response.setHeader("Access-Control-Max-Age", "86400");
         response.setCharacterEncoding("UTF-8");
         
@@ -151,10 +151,10 @@ public class RayPlacesDBServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", "*");
         //response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers:", "Content-Type");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers:", "Content-Type");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
