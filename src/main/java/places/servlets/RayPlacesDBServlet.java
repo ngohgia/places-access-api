@@ -236,7 +236,7 @@ public class RayPlacesDBServlet extends HttpServlet {
 				writer.write(e.getStackTrace().toString());
 				
 	            addNewLog(request, response, sb.toString(), "", e.getMessage());
-				writer.write(e.getMessage());
+				//writer.write(e.getMessage());
 			}
         	writer.flush();
             writer.close();
