@@ -41,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -232,20 +233,23 @@ public class RayPlacesDBServlet extends HttpServlet {
 			} catch (Exception e) {
 				// Logger
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				writer.write(sb.toString());
-				writer.write(e.getStackTrace().toString());
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				response.getOutputStream().println(sw.toString());
+				//writer.write(sb.toString());
+				//writer.write(e.getStackTrace().toString());
 				
-	            addNewLog(request, response, sb.toString(), "", e.getMessage());
+	            //addNewLog(request, response, sb.toString(), "", e.getMessage());
 				//writer.write(e.getMessage());
 			}
         	writer.flush();
             writer.close();
-        } catch (IOException e) {
+        } catch (IOException ioe) {
         	// Logger
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            addNewLog(request, response, sb.toString(), "", e.getMessage());
+            addNewLog(request, response, sb.toString(), "", ioe.getMessage());
         	
-        	response.getOutputStream().println(e.getMessage());
+        	response.getOutputStream().println(ioe.getMessage());
         }
     }
     
@@ -323,13 +327,17 @@ public class RayPlacesDBServlet extends HttpServlet {
 
         if (mRayPlace.getId().equals("")){
             coll.insert(doc);
+            writer.write(doc.get("_id").toString());
         } else {
         	BasicDBObject query = new BasicDBObject("_id", new ObjectId(mRayPlace.getId()));
 
             coll.update(query, doc);
+            writer.write(mRayPlace.getId());
         }
         
-        writer.write(doc.get("_id").toString());
+        //writer.write(mRayPlace.getId());
+        //writer.write(doc.toString());
+        //writer.write(doc.get("_id").toString());
 
         mongoDB.requestDone();
     }
