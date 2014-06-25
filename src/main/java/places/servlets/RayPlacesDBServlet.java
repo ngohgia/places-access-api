@@ -219,7 +219,8 @@ public class RayPlacesDBServlet extends HttpServlet {
 	            mRayPlace.setPhone(jsonObj.getString("phone"));
 	            mRayPlace.setAddress(jsonObj.getString("address"));
 	            mRayPlace.setAccessInfoFromJSONArr(jsonObj.getJSONArray("access_info"));
-	            mRayPlace.setIsPublic(jsonObj.getBoolean("ispublic"));
+	            mRayPlace.setCustomizedAccessInfoFromJSONArr(jsonObj.getJSONArray("customized_access_info"));
+	            mRayPlace.setIsPublic(jsonObj.getBoolean("is_public"));
 	            mRayPlace.updateGeoHash();
 	            
 	            addNewPlaceDocToDB(writer);
@@ -316,8 +317,9 @@ public class RayPlacesDBServlet extends HttpServlet {
         doc.put("phone", mRayPlace.getPhone());
         doc.put("address", mRayPlace.getAddress());
         doc.put("categories", mRayPlace.getPlaceType());
-        doc.put("ispublic", mRayPlace.getIsPublic());
-        doc.put("accessInfo", createMongoDocListFromMap(mRayPlace.getAccessInfo()));
+        doc.put("is_public", mRayPlace.getIsPublic());
+        doc.put("access_info", createMongoDocListFromMap(mRayPlace.getAccessInfo()));
+        doc.put("customized_access_info", createMongoDocListFromMap(mRayPlace.getCustomizedAccessInfo()));
 
         if (mRayPlace.getId().equals("")){
             coll.insert(doc);

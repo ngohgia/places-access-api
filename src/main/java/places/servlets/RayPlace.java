@@ -26,6 +26,7 @@ public class RayPlace {
 	private String mAddress = "";
 	private boolean mIsPublic;
 	private LinkedHashMap<String, String> mAccessInfo = new LinkedHashMap<String, String>();
+	private LinkedHashMap<String, String> mCustomizedAccessInfo = new LinkedHashMap<String, String>();
 	
 	public void setId(String id){
 		this.id = id;
@@ -115,10 +116,36 @@ public class RayPlace {
 		}
 	}
 	
+	public void setCustomizedAccessInfoFromJSONArr(JSONArray infoArr) throws Exception{
+		mCustomizedAccessInfo = new LinkedHashMap<String, String>();
+		
+		for (int i= 0; i< infoArr.length(); i++){
+			JSONObject info = infoArr.getJSONObject(i);
+			
+			Iterator<String> keys = info.keys();
+			String key = keys.next();
+			mCustomizedAccessInfo.put(key, info.getString(key));
+		}
+	}
+	
 	public JSONArray getAccessInfoAsJSONArr() throws Exception{
 		JSONArray infoArr = new JSONArray();
 		
 		for (Entry<String, String> entry : mAccessInfo.entrySet())
+		{
+		    JSONObject info = new JSONObject();
+		    info.put(entry.getKey(), entry.getValue());
+		    
+		    infoArr.put(info);
+		}
+		
+		return infoArr;
+	}
+	
+	public JSONArray getCustomizedAccessInfoAsJSONArr() throws Exception{
+		JSONArray infoArr = new JSONArray();
+		
+		for (Entry<String, String> entry : mCustomizedAccessInfo.entrySet())
 		{
 		    JSONObject info = new JSONObject();
 		    info.put(entry.getKey(), entry.getValue());
@@ -198,8 +225,12 @@ public class RayPlace {
 		return mIsPublic;
 	}
 	
-	public HashMap<String, String> getAccessInfo(){
+	public LinkedHashMap<String, String> getAccessInfo(){
 		return mAccessInfo;
+	}
+	
+	public LinkedHashMap<String, String> getCustomizedAccessInfo(){
+		return mCustomizedAccessInfo;
 	}
 	
 /*	public String getPlaceInfoTag(){
