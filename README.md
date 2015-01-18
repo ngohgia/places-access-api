@@ -1,3 +1,8 @@
-The OpenShift `jbossas` cartridge documentation can be found at:
+![banner](http://res.cloudinary.com/mockup-giveasia/image/upload/v1480431641/banner_glwbpp.png)
+# PLACES ACCESSIBILITY (RAY PLACES) - BACKEND
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#jbossas
+This is the backend of Places Accessibility (Ray Places) - hosted [here](https://github.com/ngohgia/places-web)
+
+## Requirements
+JBoss Application Server
+MongoDB
